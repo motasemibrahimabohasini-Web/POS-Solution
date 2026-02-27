@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Cash_System
 {
-    public partial class frmMainCashScreen : Form
+    public partial class frmPOSItemSelectorScreen : Form
     {
         Panel centerPanel;
         DataTable _dtInvoice;
@@ -21,7 +21,7 @@ namespace Cash_System
 
 
 
-        public frmMainCashScreen()
+        public frmPOSItemSelectorScreen()
         {
             InitializeComponent();
 

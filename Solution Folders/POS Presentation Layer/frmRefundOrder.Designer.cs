@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnRefund = new System.Windows.Forms.Button();
             this.ctrlOrderDetails1 = new Cash_System.ctrlOrderDetails();
             this.SuspendLayout();
             // 
-            // btnSave
+            // btnRefund
             // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Image = global::Cash_System.Properties.Resources.Save_32;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(790, 438);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(111, 37);
-            this.btnSave.TabIndex = 154;
-            this.btnSave.Text = "Refund";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnRefund.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRefund.Image = global::Cash_System.Properties.Resources.Save_32;
+            this.btnRefund.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRefund.Location = new System.Drawing.Point(786, 429);
+            this.btnRefund.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRefund.Name = "btnRefund";
+            this.btnRefund.Size = new System.Drawing.Size(111, 37);
+            this.btnRefund.TabIndex = 154;
+            this.btnRefund.Text = "Refund";
+            this.btnRefund.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRefund.UseVisualStyleBackColor = true;
+            this.btnRefund.Click += new System.EventHandler(this.btnRefund_Click);
             // 
             // ctrlOrderDetails1
             // 
@@ -58,10 +59,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 489);
-            this.Controls.Add(this.btnSave);
+            this.ClientSize = new System.Drawing.Size(953, 536);
+            this.Controls.Add(this.btnRefund);
             this.Controls.Add(this.ctrlOrderDetails1);
             this.Name = "frmRefundOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRefundOrder";
             this.ResumeLayout(false);
 
@@ -70,6 +72,6 @@
         #endregion
 
         private ctrlOrderDetails ctrlOrderDetails1;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnRefund;
     }
 }

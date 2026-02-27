@@ -1,6 +1,6 @@
 ﻿namespace Cash_System
 {
-    partial class frmMainCashScreen
+    partial class frmPOSItemSelectorScreen
     {
         /// <summary>
         /// Required designer variable.

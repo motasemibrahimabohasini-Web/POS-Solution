@@ -42,9 +42,15 @@
             this.pnMenuItems = new System.Windows.Forms.Panel();
             this.btnOrders = new System.Windows.Forms.Button();
             this.pnUsers = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.btnMenuItems = new System.Windows.Forms.Button();
+            this.btnCategories = new System.Windows.Forms.Button();
             this.SideParTransition = new System.Windows.Forms.Timer(this.components);
+            this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
+            this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnAccountSettings = new System.Windows.Forms.Button();
+            this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHam)).BeginInit();
             this.Sidebar.SuspendLayout();
@@ -57,22 +63,16 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.Controls.Add(this.guna2CircleButton1);
             this.panel1.Controls.Add(this.btnHam);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1273, 33);
-            this.panel1.TabIndex = 0;
             // 
             // btnHam
             // 
-            this.btnHam.Image = ((System.Drawing.Image)(resources.GetObject("btnHam.Image")));
-            this.btnHam.Location = new System.Drawing.Point(12, 2);
+            resources.ApplyResources(this.btnHam, "btnHam");
             this.btnHam.Name = "btnHam";
-            this.btnHam.Size = new System.Drawing.Size(46, 31);
-            this.btnHam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnHam.TabIndex = 1;
             this.btnHam.TabStop = false;
             this.btnHam.Click += new System.EventHandler(this.btnHam_Click);
             // 
@@ -81,185 +81,169 @@
             this.Sidebar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Sidebar.Controls.Add(this.pnCashScreen);
             this.Sidebar.Controls.Add(this.pnEmployees);
+            this.Sidebar.Controls.Add(this.btnEmployees);
             this.Sidebar.Controls.Add(this.pnOrders);
+            this.Sidebar.Controls.Add(this.btnOrders);
+            this.Sidebar.Controls.Add(this.button1);
             this.Sidebar.Controls.Add(this.pnMenuItems);
             this.Sidebar.Controls.Add(this.pnUsers);
-            this.Sidebar.Controls.Add(this.button2);
-            this.Sidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Sidebar.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.Sidebar.Location = new System.Drawing.Point(0, 33);
+            this.Sidebar.Controls.Add(this.btnAccountSettings);
+            resources.ApplyResources(this.Sidebar, "Sidebar");
             this.Sidebar.Name = "Sidebar";
-            this.Sidebar.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
-            this.Sidebar.Size = new System.Drawing.Size(262, 594);
-            this.Sidebar.TabIndex = 1;
             this.Sidebar.Paint += new System.Windows.Forms.PaintEventHandler(this.Sidebar_Paint);
             // 
             // pnCashScreen
             // 
             this.pnCashScreen.Controls.Add(this.btnCashScreen);
-            this.pnCashScreen.Location = new System.Drawing.Point(3, 33);
+            resources.ApplyResources(this.pnCashScreen, "pnCashScreen");
             this.pnCashScreen.Name = "pnCashScreen";
-            this.pnCashScreen.Size = new System.Drawing.Size(257, 61);
-            this.pnCashScreen.TabIndex = 6;
             // 
             // btnCashScreen
             // 
             this.btnCashScreen.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCashScreen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCashScreen.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnCashScreen, "btnCashScreen");
             this.btnCashScreen.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCashScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnCashScreen.Image")));
-            this.btnCashScreen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCashScreen.Location = new System.Drawing.Point(4, 0);
             this.btnCashScreen.Name = "btnCashScreen";
-            this.btnCashScreen.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnCashScreen.Size = new System.Drawing.Size(253, 61);
-            this.btnCashScreen.TabIndex = 2;
-            this.btnCashScreen.Text = "              POS Item Selector";
-            this.btnCashScreen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCashScreen.UseVisualStyleBackColor = false;
             this.btnCashScreen.Click += new System.EventHandler(this.btnCashScreen_Click);
             // 
             // pnEmployees
             // 
             this.pnEmployees.Controls.Add(this.btnUser);
-            this.pnEmployees.Location = new System.Drawing.Point(3, 100);
+            resources.ApplyResources(this.pnEmployees, "pnEmployees");
             this.pnEmployees.Name = "pnEmployees";
-            this.pnEmployees.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.pnEmployees.Size = new System.Drawing.Size(257, 61);
-            this.pnEmployees.TabIndex = 6;
             // 
             // btnUser
             // 
             this.btnUser.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUser.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnUser, "btnUser");
             this.btnUser.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUser.Image = ((System.Drawing.Image)(resources.GetObject("btnUser.Image")));
-            this.btnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUser.Location = new System.Drawing.Point(1, 3);
             this.btnUser.Name = "btnUser";
-            this.btnUser.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnUser.Size = new System.Drawing.Size(253, 61);
-            this.btnUser.TabIndex = 2;
-            this.btnUser.Text = "               Users";
-            this.btnUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUser.UseVisualStyleBackColor = false;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
             // pnOrders
             // 
-            this.pnOrders.Controls.Add(this.btnEmployees);
-            this.pnOrders.Location = new System.Drawing.Point(3, 167);
+            this.pnOrders.Controls.Add(this.button2);
+            resources.ApplyResources(this.pnOrders, "pnOrders");
             this.pnOrders.Name = "pnOrders";
-            this.pnOrders.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.pnOrders.Size = new System.Drawing.Size(257, 61);
-            this.pnOrders.TabIndex = 5;
             // 
             // btnEmployees
             // 
             this.btnEmployees.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEmployees.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnEmployees, "btnEmployees");
             this.btnEmployees.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnEmployees.Image = ((System.Drawing.Image)(resources.GetObject("btnEmployees.Image")));
-            this.btnEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEmployees.Location = new System.Drawing.Point(1, 3);
             this.btnEmployees.Name = "btnEmployees";
-            this.btnEmployees.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnEmployees.Size = new System.Drawing.Size(253, 61);
-            this.btnEmployees.TabIndex = 2;
-            this.btnEmployees.Text = "               Employees";
-            this.btnEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEmployees.UseVisualStyleBackColor = false;
             this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
             // pnMenuItems
             // 
-            this.pnMenuItems.Controls.Add(this.btnOrders);
-            this.pnMenuItems.Location = new System.Drawing.Point(3, 234);
+            this.pnMenuItems.Controls.Add(this.btnMenuItems);
+            resources.ApplyResources(this.pnMenuItems, "pnMenuItems");
             this.pnMenuItems.Name = "pnMenuItems";
-            this.pnMenuItems.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.pnMenuItems.Size = new System.Drawing.Size(257, 61);
-            this.pnMenuItems.TabIndex = 3;
             // 
             // btnOrders
             // 
             this.btnOrders.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnOrders.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOrders.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnOrders, "btnOrders");
             this.btnOrders.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnOrders.Image = ((System.Drawing.Image)(resources.GetObject("btnOrders.Image")));
-            this.btnOrders.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrders.Location = new System.Drawing.Point(0, -3);
             this.btnOrders.Name = "btnOrders";
-            this.btnOrders.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnOrders.Size = new System.Drawing.Size(253, 61);
-            this.btnOrders.TabIndex = 2;
-            this.btnOrders.Text = "               Orders";
-            this.btnOrders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrders.UseVisualStyleBackColor = false;
             this.btnOrders.Click += new System.EventHandler(this.button3_Click);
             // 
             // pnUsers
             // 
-            this.pnUsers.Controls.Add(this.btnMenuItems);
-            this.pnUsers.Location = new System.Drawing.Point(3, 301);
+            this.pnUsers.Controls.Add(this.btnCategories);
+            resources.ApplyResources(this.pnUsers, "pnUsers");
             this.pnUsers.Name = "pnUsers";
-            this.pnUsers.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.pnUsers.Size = new System.Drawing.Size(257, 61);
-            this.pnUsers.TabIndex = 4;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(3, 368);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(253, 61);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "               Categories";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnMenuItems
             // 
             this.btnMenuItems.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnMenuItems.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMenuItems.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.btnMenuItems, "btnMenuItems");
             this.btnMenuItems.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnMenuItems.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuItems.Image")));
-            this.btnMenuItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuItems.Location = new System.Drawing.Point(6, 0);
             this.btnMenuItems.Name = "btnMenuItems";
-            this.btnMenuItems.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnMenuItems.Size = new System.Drawing.Size(253, 61);
-            this.btnMenuItems.TabIndex = 2;
-            this.btnMenuItems.Text = "               Items";
-            this.btnMenuItems.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuItems.UseVisualStyleBackColor = false;
             this.btnMenuItems.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnCategories
+            // 
+            this.btnCategories.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            resources.ApplyResources(this.btnCategories, "btnCategories");
+            this.btnCategories.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCategories.Name = "btnCategories";
+            this.btnCategories.UseVisualStyleBackColor = false;
+            this.btnCategories.Click += new System.EventHandler(this.button2_Click);
             // 
             // SideParTransition
             // 
             this.SideParTransition.Interval = 10;
             this.SideParTransition.Tick += new System.EventHandler(this.SideParTransition_Tick);
             // 
-            // Form1
+            // guna2Elipse1
+            // 
+            this.guna2Elipse1.BorderRadius = 25;
+            this.guna2Elipse1.TargetControl = this;
+            // 
+            // guna2DragControl1
+            // 
+            this.guna2DragControl1.TargetControl = this;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnAccountSettings
+            // 
+            this.btnAccountSettings.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            resources.ApplyResources(this.btnAccountSettings, "btnAccountSettings");
+            this.btnAccountSettings.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnAccountSettings.Name = "btnAccountSettings";
+            this.btnAccountSettings.UseVisualStyleBackColor = false;
+            // 
+            // guna2CircleButton1
+            // 
+            resources.ApplyResources(this.guna2CircleButton1, "guna2CircleButton1");
+            this.guna2CircleButton1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2CircleButton1.CheckedState.Parent = this.guna2CircleButton1;
+            this.guna2CircleButton1.CustomImages.Parent = this.guna2CircleButton1;
+            this.guna2CircleButton1.FillColor = System.Drawing.SystemColors.Control;
+            this.guna2CircleButton1.ForeColor = System.Drawing.SystemColors.Control;
+            this.guna2CircleButton1.HoverState.Parent = this.guna2CircleButton1;
+            this.guna2CircleButton1.Image = global::Cash_System.Properties.Resources.CloseBlack;
+            this.guna2CircleButton1.ImageSize = new System.Drawing.Size(50, 50);
+            this.guna2CircleButton1.Name = "guna2CircleButton1";
+            this.guna2CircleButton1.PressedColor = System.Drawing.Color.Transparent;
+            this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.guna2CircleButton1.ShadowDecoration.Parent = this.guna2CircleButton1;
+            this.guna2CircleButton1.UseTransparentBackground = true;
+            this.guna2CircleButton1.Click += new System.EventHandler(this.guna2CircleButton1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.ForeColor = System.Drawing.SystemColors.Control;
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // frmMainScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1273, 627);
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.Sidebar);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
-            this.Name = "Form1";
+            this.Name = "frmMainScreen";
+            this.Load += new System.EventHandler(this.frmMainScreen_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnHam)).EndInit();
             this.Sidebar.ResumeLayout(false);
@@ -288,6 +272,12 @@
         private System.Windows.Forms.Panel pnCashScreen;
         private System.Windows.Forms.Button btnCashScreen;
         private System.Windows.Forms.Timer SideParTransition;
+        private System.Windows.Forms.Button btnCategories;
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAccountSettings;
+        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
         private System.Windows.Forms.Button button2;
     }
 }

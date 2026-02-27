@@ -249,10 +249,8 @@ namespace Cash_System
 
         private void refundToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if(MessageBox.Show("Are You sure You want refund this Order",MessageBoxButtons.YesNo,MessageBoxIcon.Warning)==DialogResult.Yes)
-            //{
-                
-            //}
+            frmRefundOrder frmRefund = new frmRefundOrder((int)dgvOrders.CurrentRow.Cells[0].Value);
+            frmRefund.ShowDialog();
         }
     }
 }

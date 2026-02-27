@@ -14,15 +14,16 @@ namespace CS_Data_Access_Layer
     {
         public class dtoOrderInfo
         {
-           public int _OrderID { get; set; }
-           public int _ReleasedByUserID { get; set; }
-           public decimal _TotalAmount { get; set; }
-           public bool _IsActive { get; set; }
-           public DateTime _ReleaseDate { get; set; }
-          public  dtoOrderInfo(int OrderID , int ReleasedByUserID ,decimal TotalAmount , bool IsActive
-                , DateTime ReleasedDate)
-            { 
-               _OrderID = OrderID;
+            public int _OrderID { get; set; }
+            public int _ReleasedByUserID { get; set; }
+            public decimal _TotalAmount { get; set; }
+            public bool _IsActive { get; set; }
+            public DateTime _ReleaseDate { get; set; }
+
+            public dtoOrderInfo(int OrderID, int ReleasedByUserID, decimal TotalAmount, bool IsActive
+                  , DateTime ReleasedDate)
+            {
+                _OrderID = OrderID;
                 _ReleasedByUserID = ReleasedByUserID;
                 _TotalAmount = TotalAmount;
                 _IsActive = IsActive;
@@ -102,6 +103,36 @@ namespace CS_Data_Access_Layer
             
         }
 
+        public static bool RefundOrder(int OrderID)
+        {
+            int RowsAffected = -1;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    
+                    using (SqlCommand cmd = new SqlCommand("sp_RefundOrder", con))
+                    {
+                        con.Open();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@OrderID", OrderID);
+                        RowsAffected = cmd.ExecuteNonQuery();
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                string errorMessage = clsUtil.ExceptionMessageToString(ex);
+                clsUtil.WriteToRegistry(errorMessage, System.Diagnostics.EventLogEntryType.Error, "CS_Data_Access_Layer", "Application");
+
+            }
+            return RowsAffected != -1;
+
+
+        }
         public static DataTable GetAllOrders()
         {
             DataTable dt = new DataTable();

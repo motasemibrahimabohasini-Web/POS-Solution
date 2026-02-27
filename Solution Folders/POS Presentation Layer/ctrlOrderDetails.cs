@@ -14,7 +14,7 @@ namespace Cash_System
 {
     public partial class ctrlOrderDetails : UserControl
     {
-       clsOrder _Order;
+       public clsOrder _Order;
         DataTable _dtSales;
         public ctrlOrderDetails()
         {

@@ -18,9 +18,9 @@ namespace CS_BusinessLayer
         public int _EmployeeID { get; set; }
         public bool IsActive { get; set; }
 
-        public int _Permissions { get; set; }
+        public int RoleID { get; set; }
         public clsEmployee _Employee { get; set; } = new clsEmployee();
-        public clsUserData.dtoPermissions dtopermissions {  get; set; }
+        public clsUserData.dtoPermissions dtoPermissions {  get; set; }
         public clsUser()
         {
             UserID = 0;
@@ -28,10 +28,10 @@ namespace CS_BusinessLayer
             Password = string.Empty;
             _EmployeeID = 0;
             IsActive = false;
-            _Permissions = 0;
+            RoleID = 0;
             _Mode = enMode.AddNew;
         }
-        public clsUser(int userID, string userName, string password, int employeeID, int Permissions , bool isActive)
+        public clsUser(int userID, string userName, string password, int employeeID, int _RoleID , bool isActive)
         {
             UserID = userID;
             UserName = userName;
@@ -39,15 +39,15 @@ namespace CS_BusinessLayer
             _EmployeeID = employeeID;
             IsActive = isActive;
             _Mode = enMode.Update;
-            _Permissions = Permissions;
+            _RoleID = RoleID;
             _Employee =  clsEmployee.Find(employeeID);
-            dtopermissions = clsUserData.GetPermissionsByUserID(userID);
+            dtoPermissions = clsUserData.GetPermissionsIDByUserID(userID);
             
         }
 
         private bool AddNewUser()
         {
-            int UserID = clsUserData.AddNewUser(_EmployeeID,UserName,Password,IsActive,_Permissions);
+            int UserID = clsUserData.AddNewUser(_EmployeeID,UserName,Password,IsActive,RoleID);
             if (UserID != -1)
             {
                 this.UserID = UserID;
@@ -58,7 +58,7 @@ namespace CS_BusinessLayer
 
         private bool UpdateUser()
         {
-            return clsUserData.UpdateUser(UserID,UserName,Password,IsActive,_Permissions) ;
+            return clsUserData.UpdateUser(UserID,UserName,Password,IsActive,RoleID) ;
         }
 
         public bool DeleteUser()
@@ -99,13 +99,18 @@ namespace CS_BusinessLayer
             string UserName = string.Empty;
             string Password = string.Empty;
             bool IsActive = false;
-            int Permissions = -1;
+            int RoleID = -1;
 
-            if(clsUserData.GetUserInfoByID(UserID, ref EmployeeID, ref UserName,ref Password,ref IsActive , ref Permissions))
+            if(clsUserData.GetUserInfoByID(UserID, ref EmployeeID, ref UserName,ref Password,ref IsActive , ref RoleID))
             {
-                return new clsUser(UserID,UserName,Password,EmployeeID,Permissions,IsActive);
+                return new clsUser(UserID,UserName,Password,EmployeeID,RoleID,IsActive);
             }
             return null;
+        }
+
+        public static bool Login(string Username , string HashPassword)
+        {
+            return clsUserData.Login(Username,HashPassword);
         }
         public bool Save()
         {

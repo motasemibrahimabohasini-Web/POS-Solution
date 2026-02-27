@@ -28,8 +28,7 @@ namespace CS_Data_Access_Layer
         }
         public static bool GetUserInfoByID(int UserID,
             ref int EmployeeID, ref string UserName,
-            ref string Password, ref bool IsActive,
-            ref int Permissions)
+            ref string Password, ref bool IsActive , ref int RoleID )
         {
             bool isFound = false;
             try
@@ -52,7 +51,7 @@ namespace CS_Data_Access_Layer
                                 UserName = reader["UserName"] as string;
                                 Password = reader["Password"] as string;
                                 IsActive = (bool)reader["IsActive"];
-                                Permissions = (int)reader["Permissions"];
+                                RoleID = (int)reader["RoleID"];
 
 
 
@@ -72,7 +71,7 @@ namespace CS_Data_Access_Layer
         public static bool GetUserInfoByEmployeeID(int EmployeeID,
            ref int UserID, ref string UserName,
            ref string Password, ref bool IsActive,
-           ref int Permissions)
+           ref int RoleID)
         {
             bool isFound = false;
             try
@@ -93,7 +92,7 @@ namespace CS_Data_Access_Layer
                                 UserName = reader["UserName"] as string;
                                 Password = reader["Password"] as string;
                                 IsActive = (bool)reader["IsActive"];
-                                Permissions = (int)reader["Permissions"];
+                                RoleID = (int)reader["RoleID"];
                             }
                         }
                     }
@@ -109,7 +108,7 @@ namespace CS_Data_Access_Layer
         public static bool GetUserInfoByPersonID( int PersonID,ref int EmployeeID,
            ref int UserID, ref string UserName,
            ref string Password, ref bool IsActive,
-           ref int Permissions)
+           ref int RoleID)
         {
             bool isFound = false;
             try
@@ -131,7 +130,7 @@ namespace CS_Data_Access_Layer
                                 UserName = reader["UserName"] as string;
                                 Password = reader["Password"] as string;
                                 IsActive = (bool)reader["IsActive"];
-                                Permissions = (int)reader["Permissions"];
+                                RoleID = (int)reader["RoleID"];
                             }
                         }
                     }
@@ -145,7 +144,7 @@ namespace CS_Data_Access_Layer
             return isFound;
         }
 
-        public static int AddNewUser(int EmployeeID, string UserName, string Password, bool IsActive, int Permissions)
+        public static int AddNewUser(int EmployeeID, string UserName, string Password, bool IsActive, int RoleID)
         {
             int newUserID = -1;
             try
@@ -160,7 +159,7 @@ namespace CS_Data_Access_Layer
                         command.Parameters.AddWithValue("@UserName", UserName);
                         command.Parameters.AddWithValue("@Password", Password);
                         command.Parameters.AddWithValue("@IsActive", IsActive);
-                        command.Parameters.AddWithValue("@Permissions", Permissions);
+                        command.Parameters.AddWithValue("@RoleID", RoleID);
 
                        
 
@@ -206,7 +205,7 @@ namespace CS_Data_Access_Layer
             }
             return UsersTable;
         }
-        public static bool UpdateUser(int UserID, string UserName, string Password, bool IsActive, int Permissions)
+        public static bool UpdateUser(int UserID, string UserName, string Password, bool IsActive, int RoleID)
         {
             int rowsAffected = 0;
             try
@@ -218,9 +217,10 @@ namespace CS_Data_Access_Layer
                         command.CommandType = CommandType.StoredProcedure;
 
                         command.Parameters.AddWithValue("@UserID", UserID); command.Parameters.AddWithValue("@UserName", UserName);
-                        command.Parameters.AddWithValue("@Password", Password);
+                        command.Parameters.Add("@PasswordHash", SqlDbType.VarBinary, 50)
+                                      .Value = Password;
                         command.Parameters.AddWithValue("@IsActive", IsActive);
-                        command.Parameters.AddWithValue("@Permissions", Permissions);
+                        command.Parameters.AddWithValue("@RoleID", RoleID);
                       
                         
 
@@ -379,7 +379,7 @@ namespace CS_Data_Access_Layer
                         command.Parameters.Add(outputParam);
                         connection.Open();
                         command.ExecuteNonQuery();
-                        exists = (bool)outputParam.Value;
+                        exists = Convert.ToBoolean( outputParam.Value);
                     }
                 }
             }
@@ -391,8 +391,37 @@ namespace CS_Data_Access_Layer
             return exists;
 
         }
+        public static bool Login(string Username , string HashPassword)
+        {
+            bool IsLogged = false;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_Login",con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Username",Username);
+                        cmd.Parameters.AddWithValue("@HashPassword", HashPassword);
+                        con.Open();
+                        IsLogged = Convert.ToBoolean( cmd.ExecuteScalar());
+                       
 
-        public static dtoPermissions GetPermissionsByUserID(int UserID)
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = clsUtil.ExceptionMessageToString(ex);
+                clsUtil.WriteToRegistry(errorMessage, System.Diagnostics.EventLogEntryType.Error, "CS_Data_Access_Layer", "Application");
+
+            }
+
+            return IsLogged;
+
+        }
+
+        public static dtoPermissions GetPermissionsIDByUserID(int UserID)
         {
             try
             {

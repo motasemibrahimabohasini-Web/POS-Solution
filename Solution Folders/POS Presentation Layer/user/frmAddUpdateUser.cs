@@ -119,7 +119,7 @@ namespace Cash_System
             _User.UserName = txtUserName.Text.Trim();
             _User.Password = CS_BusinessLayer.clsUtil.HashingPassword( txtPassword.Text.Trim());
             _User.IsActive = chkIsActive.Checked;
-            //_User._EmployeeID = clsEmployee.FindByPersonID(ctrlPersonCardWithFilter1.PersonID)._EmployeeID;
+            _User._EmployeeID = clsEmployee.FindByPersonID(ctrlPersonCardWithFilter1.PersonID)._EmployeeID;
 
             if (_User.Save())
             {
@@ -234,7 +234,11 @@ namespace Cash_System
                     MessageBox.Show("Selected Person already has a user, choose another one.", "Select another Person", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ctrlPersonCardWithFilter1.FilterFocus();
                 }
-
+                if(!clsEmployee.IsEmployeeExistsByPersonID(ctrlPersonCardWithFilter1.PersonID))
+                {
+                    MessageBox.Show("Selected Person already Is not an Employee, Add Him as an Employee First.", "Add the Person ass Employee First", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ctrlPersonCardWithFilter1.FilterFocus();
+                }
                 else
                 {
                     btnSave.Enabled = true;

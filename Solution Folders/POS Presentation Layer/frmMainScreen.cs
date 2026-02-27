@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,12 +13,13 @@ namespace Cash_System
 {
     public partial class frmMainScreen : Form
     {
-        frmMainCashScreen frmCashScreen;
+        frmPOSItemSelectorScreen frmCashScreen;
         frmUsers frmListUsers ;
         frmOrders frmOrders ;
         frmItems frmProducts ;
         frmEmployees frmEmployees ;
         frmCategories frmCategories;
+        frmShifts FrmShifts;
         public frmMainScreen()
         {
             InitializeComponent();
@@ -106,7 +108,7 @@ namespace Cash_System
         {
             if (frmCashScreen == null)
             {
-                frmCashScreen = new frmMainCashScreen();
+                frmCashScreen = new frmPOSItemSelectorScreen();
                 frmCashScreen.FormClosed += FrmCashScreen_FormClosed;
                 frmCashScreen.ShowDialog();
             }
@@ -167,6 +169,10 @@ namespace Cash_System
         {
             frmCategories = null;
         }
+        private void FrmShifts_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FrmShifts = null;
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             if (frmCategories == null)
@@ -176,6 +182,38 @@ namespace Cash_System
                 frmCategories.MdiParent = this;
                 frmCategories.Dock = DockStyle.Fill;
                 frmCategories.Show();
+            }
+            else
+            {
+                frmCategories.Activate();
+            }
+        }
+
+        private void frmMainScreen_Load(object sender, EventArgs e)
+        {
+            btnEmployees_Click(null, null);
+            SideParTransition.Start();
+        }
+
+        private void guna2CircleButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (frmCategories == null)
+            {
+                FrmShifts = new frmShifts();
+                FrmShifts.FormClosed += FrmCategories_FormClosed;
+                FrmShifts.MdiParent = this;
+                FrmShifts.Dock = DockStyle.Fill;
+                FrmShifts.Show();
             }
             else
             {

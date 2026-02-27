@@ -16,7 +16,7 @@ namespace Cash_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAddUpdateUser());
+            Application.Run(new frmMainScreen());
         }
     }
 }

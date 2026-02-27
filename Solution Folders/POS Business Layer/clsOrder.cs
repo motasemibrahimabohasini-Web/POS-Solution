@@ -73,6 +73,10 @@ namespace CS_BusinessLayer
             return null;
         }
 
+        public bool Refund()
+        {
+            return clsOrderData.RefundOrder(_OrderID);
+        }
         public static DataTable GetAllOrders()
         {
             return clsOrderData.GetAllOrders();

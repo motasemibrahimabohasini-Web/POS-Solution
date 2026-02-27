@@ -117,9 +117,9 @@ namespace Cash_System
 
             _User._Employee.PersonID = ctrlPersonCardWithFilter1.PersonID;
             _User.UserName = txtUserName.Text.Trim();
-            _User.Password = txtPassword.Text.Trim();
+            _User.Password = CS_BusinessLayer.clsUtil.HashingPassword( txtPassword.Text.Trim());
             _User.IsActive = chkIsActive.Checked;
-            _User._EmployeeID = clsEmployee.FindByPersonID(ctrlPersonCardWithFilter1.PersonID)._EmployeeID;
+            //_User._EmployeeID = clsEmployee.FindByPersonID(ctrlPersonCardWithFilter1.PersonID)._EmployeeID;
 
             if (_User.Save())
             {
@@ -128,6 +128,7 @@ namespace Cash_System
                 _Mode = enMode.Update;
                 lblTitle.Text = "Update User";
                 this.Text = "Update User";
+
 
                 MessageBox.Show(" User Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

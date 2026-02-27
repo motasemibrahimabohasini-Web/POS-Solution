@@ -107,12 +107,14 @@ namespace CS_BusinessLayer
                 sourceFile = destinationFile;
                 return true;
             }
-            public static string EncryptePassword(string Password)
+            public static string HashingPassword(string Password)
             {
-                // this function will encrypt the password using SHA256
-                // and return the encrypted password as a string
-                using (SHA256 sha256Hash = SHA256.Create())
+            // this function will encrypt the password using SHA256
+            // and return the encrypted password as a string
+         
+            using (SHA256 sha256Hash = SHA256.Create())
                 {
+                
                     // ComputeHash - returns byte array
                     byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(Password));
                     // Convert byte array to a string

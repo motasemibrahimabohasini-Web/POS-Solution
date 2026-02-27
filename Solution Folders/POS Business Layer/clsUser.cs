@@ -20,6 +20,7 @@ namespace CS_BusinessLayer
 
         public int _Permissions { get; set; }
         public clsEmployee _Employee { get; set; } = new clsEmployee();
+        public clsUserData.dtoPermissions dtopermissions {  get; set; }
         public clsUser()
         {
             UserID = 0;
@@ -40,6 +41,7 @@ namespace CS_BusinessLayer
             _Mode = enMode.Update;
             _Permissions = Permissions;
             _Employee =  clsEmployee.Find(employeeID);
+            dtopermissions = clsUserData.GetPermissionsByUserID(userID);
             
         }
 

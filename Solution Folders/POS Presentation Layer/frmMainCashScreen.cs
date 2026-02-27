@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,7 +25,7 @@ namespace Cash_System
         {
             InitializeComponent();
 
-
+            clsUser User = clsUser.Find(1025);
 
            LoadCategoriesButtons();
 
@@ -236,7 +237,46 @@ namespace Cash_System
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
+            if (dgvInvoice.RowCount < 1)
+            {
+                MessageBox.Show("There is no items in the cart");
+                return;
+            }
+            clsSales Sales = new clsSales();
+            DataTable dtCpoy = new DataTable();
+            dtCpoy = (DataTable)dgvInvoice.DataSource;
+            Sales.dtSales = dtCpoy.Copy();
+            Sales.dtSales.Columns.Remove("Price");
+            Sales.dtSales.Columns.Remove("ItemName");
+            Sales.Save();
+           
+            
+            lbTotal.Text ="0.00 JD";
+            _dtInvoice.Clear();
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (dgvInvoice.RowCount >0)
+            {
+                if(MessageBox.Show("There is an items in the Schedule Are you sure you want to Exit the Form" , "Check the order",MessageBoxButtons.YesNo,MessageBoxIcon.Warning)==DialogResult.Yes)
+                {
+                    this.Close();
+                }
+                
+                
+            }
+            
+        }
+
+        private void manageOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            frmOrders orders = new frmOrders();
+            orders.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            orders.ShowDialog(); 
+            
         }
     }
 }

@@ -7,7 +7,25 @@ namespace CS_Data_Access_Layer
 {
     public class clsUserData
     {
+        public class dtoPermissions
+        {
+            public bool _CanManageUsers {  get; set; }
+            public bool _CanManageEmployees {  get; set; }
+            public bool _CanManageItems  { get; set; }
+            public bool _CanManageOrders {  get; set; }
+            public bool _CanManageSales {  get; set; }
+            public bool _CanManageShifts {  get; set; }
 
+            public dtoPermissions(bool canManageUsers, bool canManageEmployees, bool canManageItems, bool canManageOrders, bool canManageSales, bool canManageShifts)
+            {
+                this._CanManageUsers = canManageUsers;
+                this._CanManageEmployees = canManageEmployees;
+                this._CanManageItems = canManageItems;
+                this._CanManageOrders = canManageOrders;
+                this._CanManageSales = canManageSales;
+                this._CanManageShifts = canManageShifts;
+            }
+        }
         public static bool GetUserInfoByID(int UserID,
             ref int EmployeeID, ref string UserName,
             ref string Password, ref bool IsActive,
@@ -372,6 +390,37 @@ namespace CS_Data_Access_Layer
             }
             return exists;
 
+        }
+
+        public static dtoPermissions GetPermissionsByUserID(int UserID)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand("sp_GetUserPermisiions", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@UserID", UserID);
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return new dtoPermissions((bool)reader[0], (bool)reader[1], (bool)reader[2], (bool)reader[3], (bool)reader[4], (bool)reader[5]);
+                               
+                               
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = clsUtil.ExceptionMessageToString(ex);
+                clsUtil.WriteToRegistry(errorMessage, System.Diagnostics.EventLogEntryType.Error, "CS_Data_Access_Layer", "Application");
+            }
+            return null;
         }
     }
 

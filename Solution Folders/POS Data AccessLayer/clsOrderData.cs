@@ -12,6 +12,23 @@ namespace CS_Data_Access_Layer
 {
     public class clsOrderData
     {
+        public class dtoOrderInfo
+        {
+           public int _OrderID { get; set; }
+           public int _ReleasedByUserID { get; set; }
+           public decimal _TotalAmount { get; set; }
+           public bool _IsActive { get; set; }
+           public DateTime _ReleaseDate { get; set; }
+          public  dtoOrderInfo(int OrderID , int ReleasedByUserID ,decimal TotalAmount , bool IsActive
+                , DateTime ReleasedDate)
+            { 
+               _OrderID = OrderID;
+                _ReleasedByUserID = ReleasedByUserID;
+                _TotalAmount = TotalAmount;
+                _IsActive = IsActive;
+                _ReleaseDate = ReleasedDate;
+            }
+        }
         public static int AddNewOrder(float TotalAmount, DateTime ReleaseDate, int ReleasedByUserID)
         {
             int NewOrderID = 0;
@@ -48,7 +65,7 @@ namespace CS_Data_Access_Layer
         }
 
 
-        public static bool GetOrderInfo(int OrderID, ref float TotalAmount, ref DateTime ReleaseDate, ref int ReleasedByUserID)
+        public static dtoOrderInfo GetOrderInfo(int OrderID)
         {
             try
             {
@@ -62,14 +79,14 @@ namespace CS_Data_Access_Layer
                         connection.Open();
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
+                           
                             if (reader.Read())
                             {
+                               
 
-
-                                TotalAmount = Convert.ToSingle(reader["TotalAmount"]);
-                                ReleaseDate = Convert.ToDateTime(reader["ReleaseDate"]);
-                                ReleasedByUserID = Convert.ToInt32(reader["ReleasedByUserID"]);
-                                return true;
+                                return new dtoOrderInfo(OrderID, Convert.ToInt32(reader["UserID"])
+                                    , Convert.ToDecimal(reader["TotalAmount"]), (bool)reader["IsActive"], Convert.ToDateTime(reader["ReleaseDate"]));
+                                
                             }
                         }
                     }
@@ -80,8 +97,9 @@ namespace CS_Data_Access_Layer
                 string errorMessage = clsUtil.ExceptionMessageToString(ex);
                 clsUtil.WriteToRegistry(errorMessage, System.Diagnostics.EventLogEntryType.Error, "CS_Data_Access_Layer", "Application");
             }
+            return null;
 
-            return false;
+            
         }
 
         public static DataTable GetAllOrders()
@@ -109,6 +127,8 @@ namespace CS_Data_Access_Layer
             }
             return dt;
         }
+
+        
 
        
     }

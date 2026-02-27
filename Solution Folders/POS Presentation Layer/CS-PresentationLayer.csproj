@@ -62,6 +62,12 @@
     <Compile Include="ctrlEmployeeCard.Designer.cs">
       <DependentUpon>ctrlEmployeeCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="ctrlOrderDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlOrderDetails.Designer.cs">
+      <DependentUpon>ctrlOrderDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddUpdateItemOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,12 @@
     </Compile>
     <Compile Include="frmAddUpdateEmployee.Designer.cs">
       <DependentUpon>frmAddUpdateEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRefundOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRefundOrder.Designer.cs">
+      <DependentUpon>frmRefundOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReleasByOrderType.cs">
       <SubType>Form</SubType>
@@ -222,6 +234,9 @@
     <EmbeddedResource Include="ctrlEmployeeCard.resx">
       <DependentUpon>ctrlEmployeeCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctrlOrderDetails.resx">
+      <DependentUpon>ctrlOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddUpdateItemOptions.resx">
       <DependentUpon>frmAddUpdateItemOptions.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddUpdateEmployee.resx">
       <DependentUpon>frmAddUpdateEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRefundOrder.resx">
+      <DependentUpon>frmRefundOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReleasByOrderType.resx">
       <DependentUpon>frmReleasByOrderType.cs</DependentUpon>

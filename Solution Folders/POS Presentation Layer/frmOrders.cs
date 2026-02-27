@@ -219,7 +219,7 @@ namespace Cash_System
 
         private void frmOrders_Load(object sender, EventArgs e)
         {
-            _dtAllOrders = clsOrders.GetAllOrders();
+            _dtAllOrders = clsOrder.GetAllOrders();
             dgvOrders.DataSource = _dtAllOrders;
             cbFilterBy.SelectedIndex = 0;
             lblRecordsCount.Text = dgvOrders.Rows.Count.ToString();
@@ -245,6 +245,14 @@ namespace Cash_System
         private void lblTitle_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void refundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //if(MessageBox.Show("Are You sure You want refund this Order",MessageBoxButtons.YesNo,MessageBoxIcon.Warning)==DialogResult.Yes)
+            //{
+                
+            //}
         }
     }
 }

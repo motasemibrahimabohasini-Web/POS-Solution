@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace CS_Data_Access_Layer
 {
     public class clsSaleData
     {
+       
         public static bool AddNewSale(DataTable tbsales)
         {
             try
@@ -112,6 +114,38 @@ namespace CS_Data_Access_Layer
             }
 
             return dt;
+        }
+
+        public static int AddNewSales(DataTable dt , int ReleasedByUserID)
+        {
+            int NewOrderID = -1;
+            try
+            {
+               
+                using (SqlConnection con = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                { 
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_AddNewSales", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlParameter param = cmd.Parameters.AddWithValue("Sales" ,dt);
+                        cmd.Parameters.AddWithValue("UserID", ReleasedByUserID);
+                        param.TypeName = "SalesTableType";
+                        param.SqlDbType = SqlDbType.Structured;
+                       NewOrderID= Convert.ToInt32( cmd.ExecuteScalar());
+
+
+                    }
+                }
+                    
+                
+            }
+            catch (Exception ex)
+            {
+                clsUtil.WriteToRegistry(clsUtil.ExceptionMessageToString(ex), System.Diagnostics.EventLogEntryType.Error, "CA", "Application");
+            }
+            return NewOrderID;
+
         }
         
     }
